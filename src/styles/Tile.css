@@ -20,13 +20,13 @@
     height: auto;
 }
 .Tile .TileCover{
-    height: 100%;
-    width: 100%;
+    height: 84px;
+    width: 84px;
     overflow: hidden;
     
     background-color: #1c1c1c;
     position: relative;
-    top: -83.5px;
+    top: -85px;
     left: 0px;
     z-index: 2;
     transition: background-color 0.4s;
@@ -39,3 +39,23 @@ div.Tile.open div.TileCover{
 div.Tile.finalOpen div.TileCover{
     background-color: transparent;
 }
+
+
+
+@media screen and (max-width: 500px){
+    .Tile{
+      height: 50px;
+      width: 50px;
+      border-radius: 5px;
+      box-shadow: 1px 1px 2px 1px #4a4a4a;
+      border: 1.3px solid #717171;
+      margin: 2px;
+  }
+  
+  .Tile .TileCover{
+      
+      top: -58px;
+      left: 0px;
+  }
+  }
+  

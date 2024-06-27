@@ -1,9 +1,11 @@
 .App {
   text-align: center;
   min-height: 100vh;
+  padding: 10px;
+  font-family: "Kode Mono", monospace;
 }
 .App h1{
-  font-family: Impact, 'Haettenschweiler', 'Arial Narrow Bold', sans-serif;
+  font-family: "Oswald", sans-serif;
   color: white;
   -webkit-text-stroke-width: 2px;
   -webkit-text-stroke-color: rgb(140, 140, 140);
@@ -46,21 +48,20 @@
   align-self: center;
   float: none;
 }
+.difficultyParent .dif{
+  padding-bottom: 10px;
+}
 .resetBtn{
   display: none;
 }
 footer{
   text-align: center;
   background-color: rgb(149, 149, 149);
-  max-width: 100%;
+  
   padding: 20px;
   border-top: 3px solid rgb(132, 132, 132);
   border-radius: 4px;
 }
 .App p{
-  font-family: "Impact", monospace;
-  /* font-size: 1.5em;
-  color: white;
-  -webkit-text-stroke-width: 0.5px;
-  -webkit-text-stroke-color: black; */
+  font-family: "Oswald", sans-serif;
 }

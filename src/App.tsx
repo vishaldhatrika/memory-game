@@ -141,19 +141,19 @@ function App() {
       <main>
         
         <div className="difficultyParent">
-          <label htmlFor="easy">
-            <input type="radio" name="difficulty" id="easy" value="easy" />Easy
-          </label>
-          &nbsp;&nbsp;&nbsp;
-          <label htmlFor="medium">
-            <input type="radio" name="difficulty" id="medium" value="medium" />Medium
-          </label>
-          &nbsp;&nbsp;&nbsp;
-          <label htmlFor="hard">
-            <input type="radio" name="difficulty" id="hard" value="hard" />Hard
-          </label>
-          &nbsp;&nbsp;&nbsp;
-          &nbsp;&nbsp;&nbsp;
+          <div className="dif">
+            <label htmlFor="easy">
+              <input type="radio" name="difficulty" id="easy" value="easy" />Easy
+            </label>
+            &nbsp;&nbsp;&nbsp;
+            <label htmlFor="medium">
+              <input type="radio" name="difficulty" id="medium" value="medium" />Medium
+            </label>
+            &nbsp;&nbsp;&nbsp;
+            <label htmlFor="hard">
+              <input type="radio" name="difficulty" id="hard" value="hard" />Hard
+            </label>
+          </div>
           <button className="startBtn" onClick={startGame}>START</button>
         </div>
         
