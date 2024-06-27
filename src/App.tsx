@@ -13,6 +13,9 @@ function App() {
   const[score, setScore] = useState(0);
   const[moves, setMoves] = useState(0);
   const [diff, setDiff] = useState<string | undefined>(); // difficulty
+
+  const [matchedTiles, setMatchedTiles] = useState<number[]>([]);
+
   
   
   const [sequence, setSequence] = useState<number[]>([]);
@@ -38,7 +41,8 @@ function App() {
         setTime((prevT) => (prevT !== undefined ? prevT + 1 : 0));
       }, 1000);
     }
-  
+    
+
     // Clean up the timer when the component is unmounted or when isRunning/t changes
     return () => {
       clearInterval(timer);
@@ -50,7 +54,8 @@ function App() {
   const resetGame = () => {
     set_n(null);
     setMoves(0);
-    setScore(0);
+    
+    setMatchedTiles([]);
     setTime(undefined);
     setIsRunning(false);
     setSequence(generateSequence(0));
@@ -69,6 +74,8 @@ function App() {
     const selectedDifficulty = document.querySelector('input[name="difficulty"]:checked') as HTMLInputElement;
     if (selectedDifficulty && selectedDifficulty.value) {
       setTime(0);
+      setMoves(0);
+      setScore(1000);
       // update Time
       setIsRunning(true);
       document.querySelector('button')!.disabled = true; //disable the start button
@@ -105,6 +112,12 @@ function App() {
     }
   };
 
+  //useEffect to update score based on moves, time, and 
+  useEffect(() => {
+    if(time!==undefined && time>0){
+      setScore(1000 - (moves*10) - (time*5));
+    }
+  }, [moves, time]);
   
 
   
@@ -136,7 +149,16 @@ function App() {
         </div>
         
         
-        {n !== null && <Board n={n} sequence={sequence}/>}
+        {n !== null && <Board 
+                        n={n} 
+                        sequence={sequence} 
+                        setIsRunning={setIsRunning} 
+                        moves={moves} 
+                        setMoves={setMoves}
+                        matchedTiles={matchedTiles}
+                        setMatchedTiles={setMatchedTiles}
+                        />
+        }
         <br />
         <button onClick={resetGame}>Reset</button>
       </main>

@@ -4,9 +4,14 @@ import Tile from "./Tile";
 interface BoardProps {
     n: number;
     sequence: number[];
+    setIsRunning: (isRunning: boolean) => void;
+    moves: number;
+    setMoves: (moves: number) => void;
+    matchedTiles: number[];
+    setMatchedTiles: (matchedTiles: number[]) => void;
 }
 
-function Board({n, sequence}: BoardProps) {
+function Board({n, sequence, setIsRunning, moves, setMoves, matchedTiles, setMatchedTiles}: BoardProps) {
     let h: number; 
     let w: number;
     (n%2!==0) && (n = n - 1);
@@ -14,9 +19,9 @@ function Board({n, sequence}: BoardProps) {
     w = n / h;
     
     const [openTile, setOpenTile] = useState<number>(-1);
-    const [matchedTiles, setMatchedTiles] = useState<number[]>([]);
-
+    
     const checkClick = (idx: number) => {
+        setMoves(moves+1);
         if (openTile === -1) {
             setOpenTile(idx);
         } 
@@ -26,6 +31,19 @@ function Board({n, sequence}: BoardProps) {
         else {
             if (sequence[idx] === sequence[openTile]) {
                 setMatchedTiles([...matchedTiles, openTile, idx]);
+                
+                // using new set, since "matchedTiles" state is not updated immediately, until next render cycle,
+                // so using new set to check if all tiles are matched.
+                
+                const matchedTilesSet = new Set(matchedTiles);
+                matchedTilesSet.add(openTile);
+                matchedTilesSet.add(idx);
+
+                if(matchedTilesSet.size === n){
+                    console.log("Game Over");
+                    console.log("Matched Tiles Set:", matchedTilesSet);
+                    setIsRunning(false);
+                }
                 setOpenTile(-1);
             } else {
                 setOpenTile(idx);
