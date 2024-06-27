@@ -1,0 +1,9 @@
+.diff{
+    border: 1px solid white;
+    border-radius: 5px;
+    padding: 5px;
+    margin: 5px;
+    display: inline-block;
+    background-color: black;
+    color: yellow;
+}

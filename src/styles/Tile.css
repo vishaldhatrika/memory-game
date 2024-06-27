@@ -11,6 +11,7 @@
 }
 
 .Tile .TileImg{
+    background-color: #6c6c6c;
     max-width: 100%;
     overflow: hidden;
 }
@@ -29,6 +30,10 @@
     left: 0px;
     z-index: 2;
 }
-div.Tile:hover div.TileCover{
+div.Tile.open div.TileCover{
+    background-color: transparent;
+}
+
+div.Tile.finalOpen div.TileCover{
     background-color: transparent;
 }
