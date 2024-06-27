@@ -173,6 +173,9 @@ function App() {
         <br />
         <Scorecard t={time} s={score} m={moves} diff={diff}/>
       </main>
+      <footer>
+        Made by Vishal Dhatrika. <a href="https://vishaldhatrika.me">Visit my website</a>
+      </footer>
     </div>
   );
 }

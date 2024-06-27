@@ -10,7 +10,8 @@
     font-size: large;
     font-weight: bold;
     width: 500px;
-    height: 130px;
+    min-height: 130px;
+    max-width: 89vw;
 }
 .diff{
     border: 1px solid white;

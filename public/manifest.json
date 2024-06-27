@@ -1,6 +1,7 @@
 {
   "short_name": "Meme-ory",
   "name": "Meme-ory Game",
+  "description": "A simple memory game with memes",
   "icons": [
     {
       "src": "favicon.ico",

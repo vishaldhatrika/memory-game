@@ -2,8 +2,8 @@
     height: 80px;
     width: 80px;
     border-radius: 8px;
-    box-shadow: 3px 3px 4px #ccc;
-    border: 2px solid #6c6c6c;
+    box-shadow: 1px 1px 4px 1px #4a4a4a;
+    border: 2px solid #717171;
     display: inline-block;
     margin: 3px;
     padding: 0px;
@@ -11,7 +11,7 @@
 }
 
 .Tile .TileImg{
-    background-color: #6c6c6c;
+    background-color: #1c1c1c;
     max-width: 100%;
     overflow: hidden;
 }
@@ -24,7 +24,7 @@
     width: 100%;
     overflow: hidden;
     
-    background-color: #6c6c6c;
+    background-color: #1c1c1c;
     position: relative;
     top: -83.5px;
     left: 0px;
