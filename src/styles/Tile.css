@@ -29,6 +29,8 @@
     top: -83.5px;
     left: 0px;
     z-index: 2;
+    transition: background-color 0.4s;
+    
 }
 div.Tile.open div.TileCover{
     background-color: transparent;

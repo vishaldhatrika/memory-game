@@ -1,3 +1,17 @@
+.Scorecard{
+    display: none;
+    border: 8px double white;
+    background-color: rgb(14, 57, 0);
+    font-family: "Kode Mono", monospace;
+    text-transform: uppercase;
+    padding: 15px;
+    margin: 10px;
+    border-radius: 8px;
+    font-size: large;
+    font-weight: bold;
+    width: 500px;
+    height: 130px;
+}
 .diff{
     border: 1px solid white;
     border-radius: 5px;
@@ -6,4 +20,30 @@
     display: inline-block;
     background-color: black;
     color: yellow;
+}
+.s, .m, .t{
+    display: inline-block;
+    border-style: double;
+    border-width: 3px;
+    line-height: 25px;
+    border-radius: 5px;
+    padding: 5px;
+    margin: 5px;
+}
+.s{
+    background-color: rgb(101, 234, 88);
+    border-color:  rgb(0, 113, 0);
+    color:rgb(130, 74, 2);
+    
+}
+.m{
+    background-color: rgb(99, 177, 255);
+    border-color: rgb(0, 106, 255);
+    color: rgb(92, 92, 33);
+}
+.t{
+    background-color: pink;
+    border-color: rgb(255, 66, 98);
+    color: black;
+    
 }

@@ -1,9 +1,10 @@
 
 import React, { useEffect, useState } from 'react';
-import logo from './logo.svg';
+
 import './App.css';
 import Scorecard from './components/Scorecard'; // Import the Scorecard component
 import Board from './components/Board'; // Import the Board component
+
 
 function App() {
   
@@ -66,6 +67,9 @@ function App() {
       q.disabled = false; //enable the radio buttons
     });
     (document.querySelector('.difficultyParent') as HTMLDivElement)!.style.display = 'block';
+    
+    (document.querySelector('.resetBtn') as HTMLButtonElement)!.style.display = 'none';
+    (document.querySelector('.Scorecard') as HTMLDivElement)!.style.display = 'none';
    
   };
   
@@ -75,7 +79,7 @@ function App() {
     if (selectedDifficulty && selectedDifficulty.value) {
       setTime(0);
       setMoves(0);
-      setScore(1000);
+      
       // update Time
       setIsRunning(true);
       document.querySelector('button')!.disabled = true; //disable the start button
@@ -84,7 +88,9 @@ function App() {
         q.disabled = true; //disable the radio buttons
       });
       (document.querySelector('.difficultyParent') as HTMLDivElement)!.style.display = 'none';
-
+      (document.querySelector('.resetBtn') as HTMLButtonElement)!.style.display = 'inline-block';
+      (document.querySelector('.Scorecard') as HTMLDivElement)!.style.display = 'inline-block';
+   
       // based on the selected difficulty, set the number of tiles
       setDiff(selectedDifficulty.value);
       switch (selectedDifficulty.value) {
@@ -92,16 +98,19 @@ function App() {
           // generate positions for 8 tiles
           setSequence(generateSequence(8));
           set_n(8);
+          setScore(800);
           break;
 
         case "medium":
           setSequence(generateSequence(16));
           set_n(16);
+          setScore(1600);
           break;
 
         case "hard":
           setSequence(generateSequence(20));
           set_n(20);
+          setScore(2000);
           break;
 
         default:
@@ -114,10 +123,10 @@ function App() {
 
   //useEffect to update score based on moves, time, and 
   useEffect(() => {
-    if(time!==undefined && time>0){
-      setScore(1000 - (moves*10) - (time*5));
+    if(time!==undefined && time>0 && n!==null){
+      setScore(n*100 - (moves*10) - (time*5) + (matchedTiles.length*10));
     }
-  }, [moves, time]);
+  }, [moves, time, matchedTiles]);
   
 
   
@@ -125,12 +134,12 @@ function App() {
   return (
     <div className="App">
       <h1>Meme-ory Game</h1>
-      <img src={logo} className="App-logo" alt="logo" />
+      
       <p>
         Test your memory, with memes! Match tiles of same meme to complete the game.
       </p>
       <main>
-        <Scorecard t={time} s={score} m={moves} diff={diff}/>
+        
         <div className="difficultyParent">
           <label htmlFor="easy">
             <input type="radio" name="difficulty" id="easy" value="easy" />Easy
@@ -145,7 +154,7 @@ function App() {
           </label>
           &nbsp;&nbsp;&nbsp;
           &nbsp;&nbsp;&nbsp;
-          <button onClick={startGame}>Start Game</button>
+          <button className="startBtn" onClick={startGame}>START</button>
         </div>
         
         
@@ -160,7 +169,9 @@ function App() {
                         />
         }
         <br />
-        <button onClick={resetGame}>Reset</button>
+        <button className="resetBtn" onClick={resetGame}>RESET</button>
+        <br />
+        <Scorecard t={time} s={score} m={moves} diff={diff}/>
       </main>
     </div>
   );
