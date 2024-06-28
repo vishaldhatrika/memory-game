@@ -6,12 +6,15 @@
 }
 .App h1{
   font-family: "Oswald", sans-serif;
-  color: white;
-  -webkit-text-stroke-width: 2px;
-  -webkit-text-stroke-color: rgb(140, 140, 140);
+  color: rgb(255, 255, 255);
   letter-spacing: 1px;
   text-transform: uppercase;
   font-size: 3em;
+  text-shadow:
+      0 0 7px #fff,
+      0 0 92px #0fa,
+      0 0 102px #0fa,
+      0 0 151px #0fa;
 }
 
 .resetBtn, .startBtn{
@@ -28,7 +31,7 @@
   font-family: "Kode Mono", monospace;
   font-size: large;
   color: rgb(255, 255, 255);
-  border: 2px solid rgb(255, 0, 0);
+  border: 1px solid rgb(135, 135, 135);
   -webkit-text-stroke-width: 0.5px;
   -webkit-text-stroke-color: black;
 }
@@ -36,8 +39,6 @@
   color: yellow;
 }
 .difficultyParent{
-  /* min-height: 140px; */
-  background-color: rgb(149, 149, 149);
   padding: 20px;
   border-radius: 50px;
   display: inline-block;
@@ -47,6 +48,15 @@
   max-width: 500px;
   align-self: center;
   float: none;
+
+
+  background: rgba( 92, 92, 92, 0.1 );
+  box-shadow: 0 8px 32px 0 rgba(14, 87, 24, 0.37);
+  backdrop-filter: blur( 8px );
+  -webkit-backdrop-filter: blur( 8px );
+  border: 1px solid rgba( 255, 255, 255, 0.18 );
+
+
 }
 .difficultyParent .dif{
   padding-bottom: 10px;
@@ -56,11 +66,18 @@
 }
 footer{
   text-align: center;
-  background-color: rgb(149, 149, 149);
-  
+  background-color: rgb(0, 0, 0);
+  color: #33d230;
   padding: 20px;
-  border-top: 3px solid rgb(132, 132, 132);
+  /* border-top: 2px solid rgb(132, 132, 132); */
   border-radius: 4px;
+}
+footer a:visited, footer a{
+  color: #ccc73f;
+}
+
+footer a:hover, footer a:active{
+  color: #fff71d;
 }
 .App p{
   font-family: "Oswald", sans-serif;

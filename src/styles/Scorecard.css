@@ -1,7 +1,7 @@
-.Scorecard{
+.Scorecard {
     display: none;
-    border: 8px double white;
-    background-color: rgb(14, 57, 0);
+    border: 5px double white;
+    background-color: #2C6E49;
     font-family: "Kode Mono", monospace;
     text-transform: uppercase;
     padding: 15px;
@@ -13,16 +13,39 @@
     min-height: 130px;
     max-width: 80vw;
 }
-.diff{
-    border: 1px solid white;
-    border-radius: 5px;
-    padding: 5px;
-    margin: 5px;
+.dif {
     display: inline-block;
-    background-color: black;
-    color: yellow;
+    margin-right: 10px;
 }
-.s, .m, .t{
+.dif input[type="radio"] {
+    display: none;
+}
+.dif label {
+    display: inline-block;
+    cursor: pointer;
+    padding: 5px 20px;
+    background-color: #2C6E49;
+    color: black;
+    border: 1px solid transparent;
+    transition: background-color 0.24s, color 0.24s, border-color 0.24s;
+}
+.dif label:nth-last-of-type(1){
+    border-top-right-radius: 17px;
+    border-bottom-right-radius: 17px;
+}
+.dif label:nth-of-type(1) {
+    border-top-left-radius: 17px;
+    border-bottom-left-radius: 17px;
+}
+  
+.dif input[type="radio"]:checked + label {
+    background-color: rgb(3, 91, 0);
+    color: rgb(255, 235, 19);
+    font-weight: bold;
+    border-color: black;
+  }
+  
+.s, .m, .t {
     display: inline-block;
     border-style: double;
     border-width: 3px;
@@ -31,20 +54,34 @@
     padding: 5px;
     margin: 5px;
 }
-.s{
+.s {
     background-color: rgb(101, 234, 88);
     border-color:  rgb(0, 113, 0);
     color:rgb(130, 74, 2);
     
 }
-.m{
+.m {
     background-color: rgb(99, 177, 255);
     border-color: rgb(0, 106, 255);
     color: rgb(92, 92, 33);
 }
-.t{
+.t {
     background-color: pink;
     border-color: rgb(255, 66, 98);
     color: black;
     
+}
+#leaderboardBtn span, #guideBtn span{
+    background-color: transparent;
+    color: white;
+    font-size: 25px;
+    font-weight: 700;
+}
+#leaderboardBtn, #guideBtn{
+    padding: 0;
+    margin: 10px 25px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    /* font-size: xx-large; */
 }
