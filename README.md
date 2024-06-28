@@ -16,4 +16,4 @@
 
 ![Screenshot 4](https://memorygame.vishaldhatrika.me/assets/screenshots/4.png)
 
-![Screenshot 4](https://memorygame.vishaldhatrika.me/assets/screenshots/5.png)
+![Screenshot 5](https://memorygame.vishaldhatrika.me/assets/screenshots/5.png)
