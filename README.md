@@ -6,6 +6,9 @@
  - Install on most devices with a browser
  - Play offline
 
+[https://memorygame.vishaldhatrika.me](https://memorygame.vishaldhatrika.me)
+[https://meme-orygame.vercel.app](https://meme-orygame.vercel.app)
+
 
 ## Screenshots
 ![Screenshot 1](https://memorygame.vishaldhatrika.me/assets/screenshots/1.png)
