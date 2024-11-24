@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 
 import './App.css';
@@ -7,18 +6,18 @@ import Board from './components/Board'; // Import the Board component
 
 
 function App() {
-  
+
   const [n, set_n] = useState<number | null>(null);
   const [time, setTime] = useState<number | undefined>();
   const [isRunning, setIsRunning] = useState(false);
-  const[score, setScore] = useState(0);
-  const[moves, setMoves] = useState(0);
+  const [score, setScore] = useState(0);
+  const [moves, setMoves] = useState(0);
   const [diff, setDiff] = useState<string | undefined>(); // difficulty
 
   const [matchedTiles, setMatchedTiles] = useState<number[]>([]);
 
-  
-  
+
+
   const [sequence, setSequence] = useState<number[]>([]);
 
   // Function to generate a random sequence
@@ -28,21 +27,41 @@ function App() {
       seq.push(i);
       seq.push(i);
     }
-    return seq.sort(() => Math.random() - 0.5);
-  };
 
+    // shuffling the sequence here to maintain a min distace between the same tiles
+    const minDistance = Math.floor(n / 4);
+    const shuffledSeq: number[] = [];
+    while (seq.length > 0) {
+      const index = Math.floor(Math.random() * seq.length);
+      const [tile] = seq.splice(index, 1);
+      let position = Math.floor(Math.random() * (shuffledSeq.length + 1));
+
+      while (
+        (position > 0 && shuffledSeq[position - 1] === tile) ||
+        (position < shuffledSeq.length && shuffledSeq[position] === tile) ||
+        (position > minDistance && shuffledSeq[position - minDistance] === tile) ||
+        (position < shuffledSeq.length - minDistance && shuffledSeq[position + minDistance] === tile)
+      ) {
+        position = Math.floor(Math.random() * (shuffledSeq.length + 1));
+      }
+
+      shuffledSeq.splice(position, 0, tile);
+    }
+
+    return shuffledSeq;
+  };
 
 
   useEffect(() => {
     let timer: NodeJS.Timeout;
-  
+
     if (isRunning && time !== undefined) {
       // Start a timer that updates the time every second
       timer = setInterval(() => {
         setTime((prevT) => (prevT !== undefined ? prevT + 1 : 0));
       }, 1000);
     }
-    
+
 
     // Clean up the timer when the component is unmounted or when isRunning/t changes
     return () => {
@@ -55,7 +74,7 @@ function App() {
   const resetGame = () => {
     set_n(null);
     setMoves(0);
-    
+
     setMatchedTiles([]);
     setTime(undefined);
     setIsRunning(false);
@@ -67,30 +86,30 @@ function App() {
       q.disabled = false; //enable the radio buttons
     });
     (document.querySelector('.difficultyParent') as HTMLDivElement)!.style.display = 'block';
-    
+
     (document.querySelector('.resetBtn') as HTMLButtonElement)!.style.display = 'none';
     (document.querySelector('.Scorecard') as HTMLDivElement)!.style.display = 'none';
-   
+
   };
-  
+
   const startGame = () => {
     // Start the game
     const selectedDifficulty = document.querySelector('input[name="difficulty"]:checked') as HTMLInputElement;
     if (selectedDifficulty && selectedDifficulty.value) {
       setTime(0);
       setMoves(0);
-      
+
       // update Time
       setIsRunning(true);
       document.querySelector('button')!.disabled = true; //disable the start button
-      
+
       document.querySelectorAll<HTMLInputElement>('input[name="difficulty"]').forEach((q) => {
         q.disabled = true; //disable the radio buttons
       });
       (document.querySelector('.difficultyParent') as HTMLDivElement)!.style.display = 'none';
       (document.querySelector('.resetBtn') as HTMLButtonElement)!.style.display = 'inline-block';
       (document.querySelector('.Scorecard') as HTMLDivElement)!.style.display = 'inline-block';
-   
+
       // based on the selected difficulty, set the number of tiles
       setDiff(selectedDifficulty.value);
       switch (selectedDifficulty.value) {
@@ -123,23 +142,23 @@ function App() {
 
   //useEffect to update score based on moves, time, and 
   useEffect(() => {
-    if(time!==undefined && time>0 && n!==null){
-      setScore(n*100 - (moves*10) - (time*5) + (matchedTiles.length*10));
+    if (time !== undefined && time > 0 && n !== null) {
+      setScore(n * 100 - (moves * 10) - (time * 5) + (matchedTiles.length * 10));
     }
   }, [moves, time, matchedTiles]);
-  
 
-  
+
+
 
   return (
     <div className="App">
       <h1>Meme-ory Game</h1>
-      
+
       <p>
         Test your memory, with memes! Match tiles of same meme to complete the game.
       </p>
       <main>
-        
+
         <div className="difficultyParent">
           <div className="dif">
             <input type="radio" name="difficulty" id="easy" value="easy" />
@@ -157,22 +176,22 @@ function App() {
           </div>
           <button className="startBtn" onClick={startGame}>START</button>
         </div>
-        
-        
-        {n !== null && <Board 
-                        n={n} 
-                        sequence={sequence} 
-                        setIsRunning={setIsRunning} 
-                        moves={moves} 
-                        setMoves={setMoves}
-                        matchedTiles={matchedTiles}
-                        setMatchedTiles={setMatchedTiles}
-                        />
+
+
+        {n !== null && <Board
+          n={n}
+          sequence={sequence}
+          setIsRunning={setIsRunning}
+          moves={moves}
+          setMoves={setMoves}
+          matchedTiles={matchedTiles}
+          setMatchedTiles={setMatchedTiles}
+        />
         }
         <br />
         <button className="resetBtn" onClick={resetGame}>RESET</button>
         <br />
-        <Scorecard t={time} s={score} m={moves} diff={diff}/>
+        <Scorecard t={time} s={score} m={moves} diff={diff} />
       </main>
       <footer>
         Made by Vishal Dhatrika. <a href="https://vishaldhatrika.me">Visit my website</a>
