@@ -28,7 +28,7 @@ function App() {
       seq.push(i);
     }
 
-    // shuffling the sequence here to maintain a min distace between the same tiles
+    // shuffling the sequence here to maintain a min distance between the same tiles
     const minDistance = Math.floor(n / 4);
     const shuffledSeq: number[] = [];
     while (seq.length > 0) {
